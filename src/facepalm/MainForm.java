@@ -8,7 +8,7 @@ package facepalm;
 import facepalm.fbservices.FBManager;
 import facepalm.fbservices.LoginDialog;
 import facepalm.fbservices.Router;
-import facepalm.fbservices.Utils;
+import facepalm.fbservices.ServiceUtils;
 import facepalm.model.User;
 import java.awt.event.*;
 import retrofit2.Call;
@@ -27,7 +27,7 @@ public class MainForm extends javax.swing.JFrame {
     public MainForm() {
         initComponents();
         
-         FBManager.getInstance().setAppId("1776796662585446");
+         FBManager.getInstance().setAppId(Utils.APP_ID);
     }
 
     /**
@@ -91,27 +91,28 @@ public class MainForm extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 // save current access token
                 FBManager.getInstance().setAccessToken(login._token);
-
-                /* get user info */
-                Router router = Utils.createService(Router.class);
-
-                Call<User> call = router.retrieveInfo(User.buildFieldsParams(), FBManager.getInstance().getAccessToken());
-
-                call.enqueue(new Callback<User>() {
-
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> rspns) { 
-                        User user = rspns.body();
-                        FBManager.getInstance().setCurrentUser(user);
-                        nameLabel.setText("Hello " + user.getName());
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable thrwbl) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-                
-                });
+                new FacepalmForm().setVisible(true);
+                MainForm.this.setVisible(false);
+//                /* get user info */
+//                Router router = ServiceUtils.createService(Router.class);
+//
+//                Call<User> call = router.retrieveInfo(User.buildFieldsParams(), FBManager.getInstance().getAccessToken());
+//
+//                call.enqueue(new Callback<User>() {
+//
+//                    @Override
+//                    public void onResponse(Call<User> call, Response<User> rspns) { 
+//                        User user = rspns.body();
+//                        FBManager.getInstance().setCurrentUser(user);
+//                        nameLabel.setText("Hello " + user.getName());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<User> call, Throwable thrwbl) {
+//                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//                
+//                });
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -5,9 +5,11 @@
  */
 package facepalm.fbservices;
 
+import facepalm.model.Album;
 import facepalm.model.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -18,5 +20,8 @@ public interface Router {
     
     @GET("me/")
     Call<User> retrieveInfo(@Query("fields") String fields, @Query("access_token") String token);
+  
+    @GET("{album_id}/")
+    Call<Album> retrieveAlbum(@Path("album_id") String albumId, @Query("fields") String fields, @Query("access_token") String token);
   
 }

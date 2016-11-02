@@ -11,6 +11,16 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Stevie
  */
-public class Feed extends BaseTextConnector{
-    
+public class Paging{
+
+    @SerializedName("cursors")            
+    private Cursor cursor;
+
+    private class Cursor{
+        @SerializedName("before")            
+        private String before;
+
+        @SerializedName("after")            
+        private String after;
+    }
 }

@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/model/User.java</file>
-            <file>jar:file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/libs/retrofit-2.1.0.jar!/META-INF/maven/com.squareup.retrofit2/retrofit/pom.xml</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/fbservices/Router.java</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/fbservices/Utils.java</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/model/Album.java</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/model/PageLike.java</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/model/BaseConnector.java</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/model/Feed.java</file>
-            <file>file:/E:/7ung%20doc/7th%20Simeter/Java/Demo/Facepalm/src/facepalm/Facepalm.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

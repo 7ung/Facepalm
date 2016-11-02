@@ -11,6 +11,10 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Stevie
  */
-public class Feed extends BaseTextConnector{
+public class Like {
+    @SerializedName("link")
+    private String _link;
     
+    @SerializedName("pic")
+    private String _pic;
 }

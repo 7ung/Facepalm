@@ -6,6 +6,7 @@
 package facepalm.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 /**
  * Thông tin các album ảnh của User
@@ -13,7 +14,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Album extends BaseConnector{
         
-    
     @SerializedName("description")
     private String _description;   
 
@@ -23,12 +23,75 @@ public class Album extends BaseConnector{
     @SerializedName("count")    
     private int _count;     //Tổng số ảnh + video
     
-    @SerializedName("photo_count")    
-    private int _photo_count; 
-        
-    @SerializedName("video_count")    
-    private int _video_count; 
-    
     @SerializedName("link")
-    private String _link;        
+    private String _link;  
+    
+    @SerializedName("comments")
+    private AlbumComment _comments;
+    
+    @SerializedName("likes")
+    private AlbumLike _likes;
+
+    /**
+     * @return the _description
+     */
+    public String getDescription() {
+        return _description;
+    }
+
+    /**
+     * @return the _updated_time
+     */
+    public String getUpdated_time() {
+        return _updated_time;
+    }
+
+    /**
+     * @return the _count
+     */
+    public int getCount() {
+        return _count;
+    }
+
+    /**
+     * @return the _link
+     */
+    public String getLink() {
+        return _link;
+    }
+
+    /**
+     * @return the _comments
+     */
+    public AlbumComment getComments() {
+        return _comments;
+    }
+
+    /**
+     * @return the _likes
+     */
+    public AlbumLike getLikes() {
+        return _likes;
+    }
+    
+    private class AlbumComment{
+        @SerializedName("data")
+        private ArrayList<Comment> _feeds;
+        
+        @SerializedName("paging")
+        private Paging _paging;
+    }
+    
+    private class AlbumLike{
+        @SerializedName("data")
+        private ArrayList<Like> _feeds;
+        
+        @SerializedName("paging")
+        private Paging _paging;
+    }
+    
+    public static String buildFieldsParams(){
+        // để sau bỏ vô cái list cho dễ
+        return "id,name,created_time,description,updated_time,count,link,comments,likes";
+    }
 }

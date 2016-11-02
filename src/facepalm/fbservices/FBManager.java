@@ -6,6 +6,7 @@
 package facepalm.fbservices;
 
 import facepalm.model.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -26,8 +27,39 @@ public class FBManager {
     private String _appId;
     private String _redirectUri = "https://www.facebook.com/connect/login_success.html";
     private String _responseType = "token";
-    private String _scope = "user_about_me,email,user_posts";
+    
+    /**
+     * Use for ...
+     */
+    private static final String SCOPE_USER_ABOUT_ME = "user_about_me";
+    
+    /**
+     * Use for ...
+     */
+    private static final String SCOPE_EMAIL = "email";
+    
+    /**
+     * Use for ...
+     */
+    private static final String SCOPE_USER_POSTS = "user_posts";
 
+    private static ArrayList<String> _scope = new ArrayList<>();
+    static {
+        _scope.add(SCOPE_USER_ABOUT_ME);
+        _scope.add(SCOPE_EMAIL);
+        _scope.add(SCOPE_USER_POSTS);
+    }
+    
+    private String buildScope(){
+        StringBuilder builder = new StringBuilder();
+        for (int  i = 0; i < _scope.size(); ++i){
+            if (i != 0)
+                builder.append(",");
+            builder.append(_scope.get(i));
+        }
+        return builder.toString();
+    }
+    
     public static FBManager getInstance() {
         if (_instance == null) {
             _instance = new FBManager();
@@ -68,7 +100,11 @@ public class FBManager {
         _appId = appId;
         _redirectUri = redirect;
         _responseType = responseType;
-        _scope = scope;
+//        _scope = scope;
+    }
+    
+    public void addScope(String scope){
+        _scope.add(scope);
     }
 
     public String getOauthUrl() {
@@ -76,7 +112,7 @@ public class FBManager {
                 + "?client_id=" + _appId
                 + "&redirect_uri=" + _redirectUri
                 + "&response_type=" + _responseType
-                + "&scope=" + _scope;
+                + "&scope=" + buildScope();
 
         return oauth;
     }

@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  * @author Stevie
  */
-public class Utils {
+public class ServiceUtils {
     public static final String HOME = "https://graph.facebook.com/";
     public static final String VERSION = "v2.8/";
     
