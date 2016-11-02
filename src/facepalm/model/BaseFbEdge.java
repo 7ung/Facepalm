@@ -5,12 +5,10 @@
  */
 package facepalm.model;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  *
  * @author Stevie
  */
-public class Feed extends BaseTextConnector{
+public class BaseFbEdge {
     
 }

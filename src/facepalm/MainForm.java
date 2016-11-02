@@ -7,6 +7,8 @@ package facepalm;
 
 import facepalm.fbservices.FBManager;
 import facepalm.fbservices.LoginDialog;
+import facepalm.fbservices.Router;
+import facepalm.fbservices.ServiceUtils;
 import facepalm.model.User;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -29,12 +31,6 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
         
         FBManager.getInstance().loadData();
-        FBManager.getInstance().createLoginInfo(
-                "1776796662585446", 
-                "https://www.facebook.com/connect/login_success.html", 
-                "token", 
-                "user_about_me,email,user_posts");
-        
         // update UI
         updateUI();
     }

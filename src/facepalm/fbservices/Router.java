@@ -5,7 +5,7 @@
  */
 package facepalm.fbservices;
 
-import facepalm.fbservices.FBManager.AccessToken;
+import facepalm.model.Album;
 import facepalm.model.User;
 import facepalm.model.User.PictureData;
 import retrofit2.Call;
@@ -21,6 +21,9 @@ public interface Router {
     
     @GET("me/")
     Call<User> retrieveInfo(@Query("fields") String fields, @Query("access_token") String token);
+  
+    @GET("{album_id}/")
+    Call<Album> retrieveAlbum(@Path("album_id") String albumId, @Query("fields") String fields, @Query("access_token") String token);
   
     @GET("me/picture?redirect=false")
     Call<PictureData> getUserPicture(@Query("width") int width, @Query("height") int height, @Query("access_token") String token);

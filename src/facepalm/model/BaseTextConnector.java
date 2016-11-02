@@ -11,6 +11,13 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Stevie
  */
-public class Feed extends BaseTextConnector{
+public class BaseTextConnector {
+    @SerializedName("id")    
+    protected String _id;
     
+    @SerializedName("message")
+    protected String _message;
+    
+    @SerializedName("created_time")
+    protected String _created_time;
 }

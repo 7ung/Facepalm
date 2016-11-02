@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Stevie
  */
-public class Feed extends BaseTextConnector{
+public class Comment extends BaseTextConnector{
     
+    @SerializedName("from")
+    private BaseConnector _from;
 }

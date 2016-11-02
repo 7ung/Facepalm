@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package facepalm.model;
+package facepalm;
 
-import com.google.gson.annotations.SerializedName;
+import facepalm.model.User;
 
 /**
  *
  * @author Stevie
  */
-public class Feed extends BaseTextConnector{
-    
+public interface IUserView {
+    void startView();
+    void updateUserInfo(User user);
 }
