@@ -71,6 +71,7 @@ public class LoginDialog extends javax.swing.JFrame {
                     });
 
         });
+        
     }
 
     /**

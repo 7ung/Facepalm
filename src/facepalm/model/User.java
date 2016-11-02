@@ -51,9 +51,12 @@ public class User {
     @SerializedName("feed")
     private UserFeed _feed;
     
+    @SerializedName("picture")
+    private PictureData _picture;
+    
     public static String buildFieldsParams(){
         // để sau bỏ vô cái list cho dễ
-        return "about,name,id,birthday,email,gender,quotes,cover,albums,likes,feed";
+        return "about,name,id,birthday,email,gender,quotes,cover,albums,likes,feed,picture";
     }
     
     /**
@@ -133,6 +136,13 @@ public class User {
         return _feed;
     }
 
+    public Picture getPicture() {
+        return _picture.getPicture();
+    }
+
+    public void setPictureData(PictureData picture) {
+        _picture = picture;
+    }
     
     private class Cover{
         @SerializedName("id")
@@ -192,5 +202,31 @@ public class User {
         }
     }
     
+    public class PictureData {
+        @SerializedName("data")
+        private Picture _picture;
+        
+        public Picture getPicture() {
+            return _picture;
+        }
+    }
+    
+    public class Picture {
+        @SerializedName("url")
+        private String _url;
+        
+        @SerializedName("width")
+        private int _width;
+        
+        @SerializedName("height")
+        private int _height;
+        
+        @SerializedName("is_silhouette")
+        private boolean _isSilhouette;
+        
+        public String getUrl() {
+            return _url;
+        }
+    }
             
 }

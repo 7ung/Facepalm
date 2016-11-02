@@ -7,13 +7,14 @@ package facepalm;
 
 import facepalm.fbservices.FBManager;
 import facepalm.fbservices.LoginDialog;
-import facepalm.fbservices.Router;
-import facepalm.fbservices.Utils;
 import facepalm.model.User;
+import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.*;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,7 +28,43 @@ public class MainForm extends javax.swing.JFrame {
     public MainForm() {
         initComponents();
         
-         FBManager.getInstance().setAppId("1776796662585446");
+        FBManager.getInstance().loadData();
+        FBManager.getInstance().createLoginInfo(
+                "1776796662585446", 
+                "https://www.facebook.com/connect/login_success.html", 
+                "token", 
+                "user_about_me,email,user_posts");
+        
+        // update UI
+        updateUI();
+    }
+    
+    private void loadImage(String imagePath)
+    {
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                try
+                {
+                    URL url = new URL(imagePath);
+                   
+                    BufferedImage image = ImageIO.read(url);
+                    System.out.println("Load image into frame...");
+                    
+                    Image img = image.getScaledInstance(avatarLabel.getWidth(), avatarLabel.getHeight(), Image.SCALE_SMOOTH);
+                    
+                    avatarLabel.setIcon(new ImageIcon(img));
+                    
+                    System.out.println("done.");
+                }
+                catch(Exception ex)
+                {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+        
     }
 
     /**
@@ -39,19 +76,23 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
+        avatarLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setLabel("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.setLabel("Login");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginBtnActionPerformed(evt);
             }
         });
 
         nameLabel.setText("Hello");
+
+        avatarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        avatarLabel.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,27 +100,38 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(nameLabel)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loginBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameLabel)))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(loginBtn)
                     .addComponent(nameLabel))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-
+        if(FBManager.getInstance().isLoggedIn())
+        {
+            FBManager.getInstance().logOut();
+            updateUI();
+            return;
+        
+        }
         // login
         String oauth = FBManager.getInstance().getOauthUrl();
 
@@ -90,31 +142,15 @@ public class MainForm extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
                 // save current access token
-                FBManager.getInstance().setAccessToken(login._token);
-
-                /* get user info */
-                Router router = Utils.createService(Router.class);
-
-                Call<User> call = router.retrieveInfo(User.buildFieldsParams(), FBManager.getInstance().getAccessToken());
-
-                call.enqueue(new Callback<User>() {
-
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> rspns) { 
-                        User user = rspns.body();
-                        FBManager.getInstance().setCurrentUser(user);
-                        nameLabel.setText("Hello " + user.getName());
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable thrwbl) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
+                FBManager.getInstance().setAccessToken(login._token, login._expiresDate);
                 
-                });
+                FBManager.getInstance().updateCurrentUserData();
+                
+                // update UI
+                updateUI();
             }
         });
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,9 +186,32 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void updateUI()
+    {
+        if(FBManager.getInstance().isLoggedIn())
+        {
+           // get user data
+           User user = FBManager.getInstance().getCurrentUser();
+
+           nameLabel.setText("Xin chào " + user.getName());
+           loadImage(user.getPicture().getUrl());
+           
+           
+           loginBtn.setText("Đăng xuất");
+        }
+        else
+        {
+           nameLabel.setText("Bấm nút để đăng nhập.");
+           avatarLabel.setIcon(null);
+           
+           loginBtn.setText("Đăng nhập");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel avatarLabel;
+    private javax.swing.JButton loginBtn;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }
