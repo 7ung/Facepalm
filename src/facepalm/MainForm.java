@@ -7,8 +7,6 @@ package facepalm;
 
 import facepalm.fbservices.FBManager;
 import facepalm.fbservices.LoginDialog;
-import facepalm.fbservices.Router;
-import facepalm.fbservices.ServiceUtils;
 import facepalm.model.User;
 import java.awt.EventQueue;
 import java.awt.Image;
