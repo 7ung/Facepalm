@@ -7,12 +7,18 @@ package facepalm.fbservices;
 
 import facepalm.model.AccessToken;
 import facepalm.model.Album;
+import facepalm.model.Feed;
+import facepalm.model.Privacy;
 import facepalm.model.User;
 import facepalm.model.User.PictureData;
+import java.util.Map;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  *
@@ -34,4 +40,13 @@ public interface Router {
             @Query("client_id") String appId, 
             @Query("client_secret") String appSecret,
             @Query("fb_exchange_token") String token);
+    
+    @POST("me/feed")
+    Call<Feed> postStatus(@Query("message") String message, @Query("privacy") String privacy ,@Query("access_token") String token);
+    
+    @GET("{post_id}")
+    Call<Feed> getPost(@Path("post_id") String postId, @Query("access_token") String token);
+    
+    @POST("me/feed")
+    Call<Feed> postStatus(@QueryMap Map<String, String> parameters, @Query("access_token") String token);
 }

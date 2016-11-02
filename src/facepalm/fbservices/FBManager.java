@@ -7,6 +7,7 @@ package facepalm.fbservices;
 
 import facepalm.Utils;
 import facepalm.model.*;
+import facepalm.model.User.PictureData;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.ArrayList;
@@ -53,12 +54,14 @@ public class FBManager {
      * Use for ...
      */
     private static final String SCOPE_USER_POSTS = "user_posts";
-
+    private static final String SCOPE_USER_PUBLISH = "publish_actions";
+    
     private static ArrayList<String> _scope = new ArrayList<>();
     static {
         _scope.add(SCOPE_USER_ABOUT_ME);
         _scope.add(SCOPE_EMAIL);
         _scope.add(SCOPE_USER_POSTS);
+        _scope.add(SCOPE_USER_PUBLISH);
     }
     
     private String buildScope(){
@@ -219,6 +222,11 @@ public class FBManager {
         {
             User user = call.execute().body();
             FBManager.getInstance().setCurrentUser(user);
+            
+            // lấy hình avatar mới
+            Call<PictureData> picCall = _router.getUserPicture(200, 200, FBManager.getInstance().getAccessToken());
+            PictureData picData = picCall.execute().body();
+            FBManager.getInstance().getCurrentUser().setPictureData(picData);
         }
         catch(Exception ex)
         {

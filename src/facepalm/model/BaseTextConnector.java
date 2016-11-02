@@ -20,4 +20,24 @@ public class BaseTextConnector {
     
     @SerializedName("created_time")
     protected String _created_time;
+    
+    @SerializedName("privacy")
+    protected Privacy _privacy;
+    
+    public void setMessage(String message, Privacy privacy)
+    {
+        _message = message;
+        _privacy = privacy;
+    }
+    
+    public String getMessage()
+    {
+        return _message;
+    }
+    
+    public String getId()
+    {
+        return _id;
+    }
+    
 }

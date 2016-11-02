@@ -5,9 +5,16 @@
  */
 package facepalm;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import facepalm.fbservices.FBManager;
 import facepalm.fbservices.LoginDialog;
+import facepalm.fbservices.Router;
+import facepalm.fbservices.ServiceUtils;
+import facepalm.model.Privacy;
+import facepalm.model.Feed;
 import facepalm.model.User;
+import facepalm.presenter.FeedPresenter;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.*;
@@ -20,13 +27,17 @@ import javax.swing.ImageIcon;
  *
  * @author Vinh
  */
-public class MainForm extends javax.swing.JFrame {
+public class MainForm extends javax.swing.JFrame implements IFeedView {
 
+    private FeedPresenter _feedPresenter;
+    
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
+        
+        _feedPresenter = new FeedPresenter(this);
         
         FBManager.getInstance().loadData();
 
@@ -71,12 +82,27 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tabbedPanel = new javax.swing.JTabbedPane();
+        basicInfoTab = new javax.swing.JPanel();
         loginBtn = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
         avatarLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        inputText = new javax.swing.JTextArea();
+        sendBtn = new javax.swing.JButton();
+        privacyComboBox = new javax.swing.JComboBox();
+        linkInputText = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        photosTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(300, 150));
 
+        tabbedPanel.setFocusable(false);
+
+        basicInfoTab.setFocusable(false);
+
+        loginBtn.setFocusable(false);
         loginBtn.setLabel("Login");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +114,82 @@ public class MainForm extends javax.swing.JFrame {
 
         avatarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         avatarLabel.setToolTipText("");
+        avatarLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        inputText.setColumns(20);
+        inputText.setRows(3);
+        jScrollPane1.setViewportView(inputText);
+
+        sendBtn.setText("Đăng");
+        sendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBtnActionPerformed(evt);
+            }
+        });
+
+        privacyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Công khai", "Chỉ mình tôi", "Bạn bè" }));
+
+        jLabel1.setText("Link");
+
+        javax.swing.GroupLayout basicInfoTabLayout = new javax.swing.GroupLayout(basicInfoTab);
+        basicInfoTab.setLayout(basicInfoTabLayout);
+        basicInfoTabLayout.setHorizontalGroup(
+            basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(basicInfoTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(avatarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(basicInfoTabLayout.createSequentialGroup()
+                        .addComponent(nameLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicInfoTabLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(linkInputText, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(privacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sendBtn)))
+                .addContainerGap())
+        );
+        basicInfoTabLayout.setVerticalGroup(
+            basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(basicInfoTabLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(basicInfoTabLayout.createSequentialGroup()
+                        .addComponent(nameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginBtn)
+                    .addComponent(privacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendBtn)
+                    .addComponent(linkInputText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+
+        tabbedPanel.addTab("Trạng thái", basicInfoTab);
+
+        javax.swing.GroupLayout photosTabLayout = new javax.swing.GroupLayout(photosTab);
+        photosTab.setLayout(photosTabLayout);
+        photosTabLayout.setHorizontalGroup(
+            photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 619, Short.MAX_VALUE)
+        );
+        photosTabLayout.setVerticalGroup(
+            photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+        );
+
+        tabbedPanel.addTab("tab2", photosTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,24 +197,15 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(loginBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(nameLabel)))
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addComponent(tabbedPanel)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginBtn)
-                    .addComponent(nameLabel))
-                .addGap(18, 18, 18)
-                .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addComponent(tabbedPanel)
+                .addContainerGap())
         );
 
         pack();
@@ -146,6 +239,15 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
+        // TODO add your handling code here:
+        
+        Feed feed = new Feed();
+        feed.setData(inputText.getText(), linkInputText.getText(), "", "", "", "", "", "", "");
+        
+        _feedPresenter.sendStatus(feed, privacyComboBox.getSelectedIndex());
+    }//GEN-LAST:event_sendBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,18 +284,23 @@ public class MainForm extends javax.swing.JFrame {
         });
     }
     
-    private void updateUI()
+    @Override
+    public void updateUI()
     {
         if(FBManager.getInstance().isLoggedIn())
         {
            // get user data
            User user = FBManager.getInstance().getCurrentUser();
 
-           nameLabel.setText("Xin chào " + user.getName());
+           nameLabel.setText("Xin chào " + user.getName() + ", bạn đang nghĩ gì? :)");
+           
            loadImage(user.getPicture().getUrl());
            
-           
            loginBtn.setText("Đăng xuất");
+           sendBtn.setEnabled(true);
+           inputText.setEnabled(true);
+           linkInputText.setEnabled(true);
+           privacyComboBox.setEnabled(true);
         }
         else
         {
@@ -201,12 +308,31 @@ public class MainForm extends javax.swing.JFrame {
            avatarLabel.setIcon(null);
            
            loginBtn.setText("Đăng nhập");
+           sendBtn.setEnabled(false);
+           inputText.setEnabled(false);
+           linkInputText.setEnabled(false);
+           privacyComboBox.setEnabled(false);
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarLabel;
+    private javax.swing.JPanel basicInfoTab;
+    private javax.swing.JTextArea inputText;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField linkInputText;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JPanel photosTab;
+    private javax.swing.JComboBox privacyComboBox;
+    private javax.swing.JButton sendBtn;
+    private javax.swing.JTabbedPane tabbedPanel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void updateUserFeed() {
+        inputText.setText("");
+        linkInputText.setText("");
+    }
 }
