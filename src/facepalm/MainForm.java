@@ -31,6 +31,7 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
         
         FBManager.getInstance().loadData();
+
         // update UI
         updateUI();
     }

@@ -118,8 +118,8 @@ public class User {
     /**
      * @return the _albumId
      */
-    public ArrayList<Album> getAlbums() {
-        return _albumId._albums;
+    public UserAlbum getAlbumId() {
+        return _albumId;
     }
 
     /**
@@ -187,8 +187,20 @@ public class User {
         @SerializedName("paging")
         private Paging _paging;
     }
+    
+    private class Paging{
+        
+        @SerializedName("cursors")            
+        private Cursor cursor;
+        
+        private class Cursor{
+            @SerializedName("before")            
+            private String before;
             
-
+            @SerializedName("after")            
+            private String after;
+        }
+    }
     
     public class PictureData {
         @SerializedName("data")
