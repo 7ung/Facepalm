@@ -189,18 +189,18 @@ public class MainForm extends javax.swing.JFrame {
            // get user data
            User user = FBManager.getInstance().getCurrentUser();
 
-           nameLabel.setText("Xin chào " + user.getName());
+           nameLabel.setText("Xin ch�o " + user.getName());
            loadImage(user.getPicture().getUrl());
            
            
-           loginBtn.setText("Đăng xuất");
+           loginBtn.setText("�ang xu?t");
         }
         else
         {
-           nameLabel.setText("Bấm nút để đăng nhập.");
+           nameLabel.setText("B?m n�t d? dang nh?p.");
            avatarLabel.setIcon(null);
            
-           loginBtn.setText("Đăng nhập");
+           loginBtn.setText("�ang nh?p");
         }
     }
 
