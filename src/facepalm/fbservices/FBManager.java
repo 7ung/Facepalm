@@ -5,17 +5,13 @@
  */
 package facepalm.fbservices;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import facepalm.Utils;
 import facepalm.model.*;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.ArrayList;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +25,7 @@ public class FBManager {
     private Router _router;
     
     private FBManager() {
-        _router = Utils.createService(Router.class);
+        _router = ServiceUtils.createService(Router.class);
     }
     
     private static FBManager _instance = null;
@@ -41,6 +37,7 @@ public class FBManager {
     private String _appId;
     private String _redirectUri = "https://www.facebook.com/connect/login_success.html";
     private String _responseType = "token";
+    private String _appSecret = "c21caf80b9052640680b79ebf966a417";
     
     /**
      * Use for ...
@@ -56,7 +53,6 @@ public class FBManager {
      * Use for ...
      */
     private static final String SCOPE_USER_POSTS = "user_posts";
-    private String _appSecret = "c21caf80b9052640680b79ebf966a417";
 
     private static ArrayList<String> _scope = new ArrayList<>();
     static {
@@ -122,13 +118,6 @@ public class FBManager {
         _appId = id;
     }
 
-    public void createLoginInfo(String appId, String redirect, String responseType, String scope) {
-        _appId = appId;
-        _redirectUri = redirect;
-        _responseType = responseType;
-//        _scope = scope;
-    }
-    
     public void addScope(String scope){
         _scope.add(scope);
     }
@@ -141,21 +130,6 @@ public class FBManager {
                 + "&scope=" + buildScope();
 
         return oauth;
-    }
-    
-    public <T> T getData(String path)
-    {
-        Call<T> callT = _router.getData(path, _currentAccessToken);
-        
-        try {
-            T res = callT.execute().body();
-            return res;
-            
-        } catch (IOException ex) {
-            Logger.getLogger(FBManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
     }
     
     public void convertToLongTerm(String accessToken)
@@ -249,64 +223,6 @@ public class FBManager {
         catch(Exception ex)
         {
             System.out.println(ex.getMessage());
-        }
-    }
-    
-    public class AccessToken
-    {
-        @SerializedName("access_token")
-        private String _accessToken;
-        
-        @SerializedName("expires_in")
-        private int _expiresSecond;
-        
-        @SerializedName("machine_id")
-        private String _machineId;
-
-        public String getToken() {
-            return _accessToken;
-        }
-        
-        public int getExpires() {
-            return _expiresSecond;
-        }
-    }
-    
-    public class SavedData
-    {
-        @SerializedName("access_token")
-        private String _token = "";
-        
-        @SerializedName("expires_in_milisecond")
-        private long _expiresMSecond;
-        
-        @SerializedName("app_id")
-        private String _appId = "";
-        
-        public void setTokenData(String token, long expiresMSec)
-        {
-            _token = token;
-            _expiresMSecond = expiresMSec;
-        }
-        
-        public String getToken()
-        {
-            return _token;
-        }
-        
-        public long getExpiresInMSecond()
-        {
-            return _expiresMSecond;
-        }
-        
-        public String getAppId()
-        {
-            return _appId;
-        }
-        
-        public void setAppId(String appId)
-        {
-            _appId = appId;
         }
     }
 }

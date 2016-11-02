@@ -5,8 +5,8 @@
  */
 package facepalm.fbservices;
 
+import facepalm.model.AccessToken;
 import facepalm.model.Album;
-import facepalm.fbservices.FBManager.AccessToken;
 import facepalm.model.User;
 import facepalm.model.User.PictureData;
 import retrofit2.Call;
@@ -28,9 +28,6 @@ public interface Router {
   
     @GET("me/picture?redirect=false")
     Call<PictureData> getUserPicture(@Query("width") int width, @Query("height") int height, @Query("access_token") String token);
-    
-    @GET("{path}")
-    <T> T getData(@Path("path") String path, @Query("access_token") String token);
     
     @GET("oauth/access_token?grant_type=fb_exchange_token")
     Call<AccessToken> getLongTermToken(
