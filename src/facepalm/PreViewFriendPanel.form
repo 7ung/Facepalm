@@ -16,10 +16,10 @@
       <Dimension value="[260, 32767]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[260, 130]"/>
+      <Dimension value="[260, 0]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[260, 130]"/>
+      <Dimension value="[260, 0]"/>
     </Property>
   </Properties>
   <AuxValues>

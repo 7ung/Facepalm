@@ -48,17 +48,22 @@ public class LeftPanel extends javax.swing.JPanel {
         add(profilePanel);
         add(filler3);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("Photos:");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         add(jLabel1);
         add(filler1);
+
+        previewPhotoPanel.setPreferredSize(new java.awt.Dimension(260, 0));
         add(previewPhotoPanel);
         add(filler2);
 
         jLabel2.setText("Friends:");
         add(jLabel2);
         add(filler4);
+
+        preViewFriendPanel.setMinimumSize(new java.awt.Dimension(260, 0));
+        preViewFriendPanel.setPreferredSize(new java.awt.Dimension(260, 0));
         add(preViewFriendPanel);
     }// </editor-fold>//GEN-END:initComponents
 

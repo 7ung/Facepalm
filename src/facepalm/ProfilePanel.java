@@ -64,7 +64,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         jLabel1.setMaximumSize(new java.awt.Dimension(78, 50));
 
         _about.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        _about.setText("thanh niên tự cô, cuộc đời là laptop và li cà phê thanh niên tự cô, cuộc đời là laptop và li cà phê ");
+        _about.setText("...");
         _about.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 30, 0, 30));
         _about.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _about.setMaximumSize(new java.awt.Dimension(260, 24));
@@ -77,7 +77,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         jLabel3.setText("Birthday");
 
         _birthday.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        _birthday.setText("thanh niên tự cô, cuộc đời là laptop và li cà phê thanh niên tự cô, cuộc đời là laptop và li cà phê ");
+        _birthday.setText("...");
         _birthday.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 30, 0, 30));
         _birthday.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _birthday.setMaximumSize(new java.awt.Dimension(260, 24));
@@ -92,7 +92,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         jSeparator3.setMinimumSize(new java.awt.Dimension(330, 10));
 
         _email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        _email.setText("thanh niên tự cô, cuộc đời là laptop và li cà phê thanh niên tự cô, cuộc đời là laptop và li cà phê ");
+        _email.setText("...");
         _email.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 30, 0, 30));
         _email.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _email.setMaximumSize(new java.awt.Dimension(260, 24));
@@ -105,7 +105,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         jLabel5.setText("Gender");
 
         _gender.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        _gender.setText("thanh niên tự cô, cuộc đời là laptop và li cà phê thanh niên tự cô, cuộc đời là laptop và li cà phê ");
+        _gender.setText("...");
         _gender.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 30, 0, 30));
         _gender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _gender.setMaximumSize(new java.awt.Dimension(260, 24));
@@ -116,7 +116,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         jLabel6.setText("Quote");
 
         _quote.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        _quote.setText("thanh niên tự cô, cuộc đời là laptop và li cà phê thanh niên tự cô, cuộc đời là laptop và li cà phê ");
+        _quote.setText("...");
         _quote.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 30, 0, 30));
         _quote.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _quote.setMaximumSize(new java.awt.Dimension(260, 24));

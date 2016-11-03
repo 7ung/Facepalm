@@ -273,16 +273,16 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
         mQuoteText.setText(user.getQuotes());
         
         
-        int albumCount = user.getAlbums().size();
-        GridLayout layout = (GridLayout)mPhotosPannel.getLayout();
-        layout.setRows(albumCount / 3);
-        layout.setColumns(3);
-        
-        for (int i = 0; i < albumCount; ++i) {
-            AlbumPanel panel = new AlbumPanel();
-            panel.startLoading(user.getAlbums().get(i).getId());
-            mPhotosPannel.add(user.getName(), panel);
-        }
+//        int albumCount = user.getAlbums().size();
+//        GridLayout layout = (GridLayout)mPhotosPannel.getLayout();
+//        layout.setRows(albumCount / 3);
+//        layout.setColumns(3);
+//        
+//        for (int i = 0; i < albumCount; ++i) {
+//            AlbumPanel panel = new AlbumPanel();
+//            panel.startLoading(user.getAlbums().get(i).getId());
+//            mPhotosPannel.add(user.getName(), panel);
+//        }
 //        mPhotosPannel.add(panel);
         
         

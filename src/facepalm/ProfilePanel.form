@@ -127,7 +127,7 @@
     <Component class="javax.swing.JLabel" name="_about">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; "/>
+        <Property name="text" type="java.lang.String" value="..."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="30" right="30" top="0"/>
@@ -163,7 +163,7 @@
     <Component class="javax.swing.JLabel" name="_birthday">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; "/>
+        <Property name="text" type="java.lang.String" value="..."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="30" right="30" top="0"/>
@@ -206,7 +206,7 @@
     <Component class="javax.swing.JLabel" name="_email">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; "/>
+        <Property name="text" type="java.lang.String" value="..."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="30" right="30" top="0"/>
@@ -242,7 +242,7 @@
     <Component class="javax.swing.JLabel" name="_gender">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; "/>
+        <Property name="text" type="java.lang.String" value="..."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="30" right="30" top="0"/>
@@ -271,7 +271,7 @@
     <Component class="javax.swing.JLabel" name="_quote">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; thanh ni&#xea;n t&#x1ef1; c&#xf4;, cu&#x1ed9;c &#x111;&#x1edd;i l&#xe0; laptop v&#xe0; li c&#xe0; ph&#xea; "/>
+        <Property name="text" type="java.lang.String" value="..."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="0" left="30" right="30" top="0"/>

@@ -207,7 +207,11 @@ public class User {
         private class Cursor{
             @SerializedName("before")            
             private String before;
-    
+            
+            @SerializedName("after")            
+            private String after;
+        }
+    }
     public class UserPhoto{
         @SerializedName("data")
         public ArrayList<Photo> _photos;
@@ -247,10 +251,6 @@ public class User {
         }
     }
             
-            @SerializedName("after")            
-            private String after;
-        }
-    }
     
     public class PictureData {
         @SerializedName("data")

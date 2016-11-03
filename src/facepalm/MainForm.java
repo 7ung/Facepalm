@@ -36,7 +36,7 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
      */
     public MainForm() {
         initComponents();
-        
+        leftPanel.setVisible(false);
         _feedPresenter = new FeedPresenter(this);
         
         FBManager.getInstance().loadData();
@@ -93,6 +93,8 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         privacyComboBox = new javax.swing.JComboBox();
         linkInputText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        leftPanel = new facepalm.LeftPanel();
         photosTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,6 +103,8 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         tabbedPanel.setFocusable(false);
 
         basicInfoTab.setFocusable(false);
+        basicInfoTab.setMaximumSize(new java.awt.Dimension(32767, 766));
+        basicInfoTab.setPreferredSize(new java.awt.Dimension(619, 766));
 
         loginBtn.setFocusable(false);
         loginBtn.setLabel("Login");
@@ -120,16 +124,18 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         inputText.setRows(3);
         jScrollPane1.setViewportView(inputText);
 
-        sendBtn.setText("�ang");
+        sendBtn.setText("Đăng");
         sendBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendBtnActionPerformed(evt);
             }
         });
 
-        privacyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "C�ng khai", "Ch? m�nh t�i", "B?n b�" }));
+        privacyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Công khai", "Chỉ mình tôi", "Bạn bè" }));
 
         jLabel1.setText("Link");
+
+        jScrollPane2.setViewportView(leftPanel);
 
         javax.swing.GroupLayout basicInfoTabLayout = new javax.swing.GroupLayout(basicInfoTab);
         basicInfoTab.setLayout(basicInfoTabLayout);
@@ -137,23 +143,28 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
             basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(basicInfoTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(avatarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(basicInfoTabLayout.createSequentialGroup()
-                        .addComponent(nameLabel)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicInfoTabLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                    .addGroup(basicInfoTabLayout.createSequentialGroup()
+                        .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(avatarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(linkInputText, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(privacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sendBtn)))
+                        .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(basicInfoTabLayout.createSequentialGroup()
+                                .addComponent(nameLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicInfoTabLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(linkInputText, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(privacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sendBtn)))))
                 .addContainerGap())
         );
         basicInfoTabLayout.setVerticalGroup(
@@ -173,10 +184,12 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
                     .addComponent(sendBtn)
                     .addComponent(linkInputText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        tabbedPanel.addTab("Tr?ng th�i", basicInfoTab);
+        tabbedPanel.addTab("Trạng thái", basicInfoTab);
 
         javax.swing.GroupLayout photosTabLayout = new javax.swing.GroupLayout(photosTab);
         photosTab.setLayout(photosTabLayout);
@@ -186,7 +199,7 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         );
         photosTabLayout.setVerticalGroup(
             photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 716, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("tab2", photosTab);
@@ -204,7 +217,7 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPanel)
+                .addComponent(tabbedPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -292,22 +305,27 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
            // get user data
            User user = FBManager.getInstance().getCurrentUser();
 
-           nameLabel.setText("Xin ch�o " + user.getName() + ", b?n dang nghi g�? :)");
+           nameLabel.setText("Xin chào " + user.getName() + ", bạn đang nghĩ gì :)");
            
            loadImage(user.getPicture().getUrl());
            
-           loginBtn.setText("�ang xu?t");
+           loginBtn.setText("Đăng xuất");
            sendBtn.setEnabled(true);
            inputText.setEnabled(true);
            linkInputText.setEnabled(true);
            privacyComboBox.setEnabled(true);
+           
+           leftPanel.setUserProfile(FBManager.getInstance().getCurrentUser());
+           leftPanel.loadPreviewPhoto();
+           leftPanel.setVisible(true);
+
         }
         else
         {
-           nameLabel.setText("B?m n�t d? dang nh?p.");
+           nameLabel.setText("Bấm nút để đăng nhập.");
            avatarLabel.setIcon(null);
            
-           loginBtn.setText("�ang nh?p");
+           loginBtn.setText("Đăng nhập");
            sendBtn.setEnabled(false);
            inputText.setEnabled(false);
            linkInputText.setEnabled(false);
@@ -321,6 +339,8 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
     private javax.swing.JTextArea inputText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private facepalm.LeftPanel leftPanel;
     private javax.swing.JTextField linkInputText;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel nameLabel;

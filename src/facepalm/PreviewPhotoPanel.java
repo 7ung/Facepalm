@@ -61,10 +61,10 @@ public class PreviewPhotoPanel extends javax.swing.JPanel implements IPhotoView{
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255), 2));
         setMaximumSize(new java.awt.Dimension(260, 32767));
         setMinimumSize(new java.awt.Dimension(260, 0));
-        setPreferredSize(new java.awt.Dimension(260, 130));
+        setPreferredSize(new java.awt.Dimension(260, 0));
         setLayout(new java.awt.GridLayout(2, 2, 4, 4));
     }// </editor-fold>//GEN-END:initComponents
 
