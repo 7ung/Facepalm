@@ -51,9 +51,13 @@ public class User {
     @SerializedName("feed")
     private UserFeed _feed;
     
+    @SerializedName("friends")
+    private UserFriend _friend;
+    
+    
     public static String buildFieldsParams(){
         // để sau bỏ vô cái list cho dễ
-        return "about,name,id,birthday,email,gender,quotes,cover,albums,likes,feed";
+        return "about,name,id,birthday,email,gender,quotes,cover,albums,likes,feed,friends";
     }
     
     /**
@@ -133,16 +137,23 @@ public class User {
         return _feed;
     }
 
+    /**
+     * @return the _friend
+     */
+    public UserFriend getFriend() {
+        return _friend;
+    }
+
     
-    private class Cover{
+    public class Cover{
         @SerializedName("id")
-        private String _id;
+        public String _id;
         
         @SerializedName("offset_y")
-        private int _offsetY;
+        public int _offsetY;
         
         @SerializedName("source")
-        private String _source;
+        public String _source;
     }
     
     /**
@@ -176,6 +187,45 @@ public class User {
         
         @SerializedName("paging")
         private Paging _paging;
+    }
+    
+    public class UserPhoto{
+        @SerializedName("data")
+        public ArrayList<Photo> _photos;
+        
+        @SerializedName("paging")
+        public Paging _paging;
+    }
+    
+    public class UserFriend{
+        @SerializedName("data")
+        public ArrayList<BaseConnector> _photos;
+        
+        @SerializedName("paging")
+        public Paging _paging;     
+    }
+    
+    public class PictureWrap{
+        
+        @SerializedName("data")
+        public Picture _picture;
+        
+        public String getUrl(){
+            return _picture._url;
+        }
+        public class Picture{
+            @SerializedName("height")
+            public int _height;
+
+            @SerializedName("width")
+            public int _width;
+
+            @SerializedName("is_silhouette")
+            public String _is_silhouette;
+
+            @SerializedName("url")
+            public String _url;
+        }
     }
             
 }

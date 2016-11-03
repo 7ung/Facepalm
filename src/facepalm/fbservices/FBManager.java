@@ -29,12 +29,12 @@ public class FBManager {
     private String _responseType = "token";
     
     /**
-     * Use for ...
+     * Nhận thông tin cơ bản
      */
     private static final String SCOPE_USER_ABOUT_ME = "user_about_me";
     
     /**
-     * Use for ...
+     * Nhận email
      */
     private static final String SCOPE_EMAIL = "email";
     
@@ -43,11 +43,36 @@ public class FBManager {
      */
     private static final String SCOPE_USER_POSTS = "user_posts";
 
+    /**
+     * Nhận ngày sinh
+     */
+    private static final String SCOPE_USER_BIRTHDAY = "user_birthday";
+
+    /**
+     * Nhận quote
+     * Nhận danh sách page like
+     */
+    private static final String SCOPE_USER_LIKE = "user_likes";
+    
+    /**
+     * Nhận thông tin ảnh
+     */
+    private static final String SCOPE_USER_PHOTOS = "user_photos";
+    
+    /**
+     * Nhận thông tin friends
+     */
+    private static final String SCOPE_USER_FRIENDS = "user_friends";
+    
     private static ArrayList<String> _scope = new ArrayList<>();
     static {
         _scope.add(SCOPE_USER_ABOUT_ME);
         _scope.add(SCOPE_EMAIL);
         _scope.add(SCOPE_USER_POSTS);
+        _scope.add(SCOPE_USER_BIRTHDAY);
+        _scope.add(SCOPE_USER_LIKE);
+        _scope.add(SCOPE_USER_PHOTOS);
+        _scope.add(SCOPE_USER_FRIENDS);
     }
     
     private String buildScope(){

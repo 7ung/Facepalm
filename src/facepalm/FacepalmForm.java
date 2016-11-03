@@ -11,9 +11,15 @@ import facepalm.fbservices.ServiceUtils;
 import facepalm.model.User;
 import facepalm.presenter.IUserPresenter;
 import facepalm.presenter.UserPresenterImpl;
+import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Group;
+import javax.swing.JFrame;
+import javax.swing.LayoutStyle;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,10 +70,23 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
         mEmailText = new javax.swing.JLabel();
         mGenderText = new javax.swing.JLabel();
         mQuoteText = new javax.swing.JLabel();
+        mPhotosPannel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(600, 800));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setEnabled(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setFocusCycleRoot(false);
+        setMaximumSize(new java.awt.Dimension(800, 800));
+        setMinimumSize(new java.awt.Dimension(800, 700));
+        setPreferredSize(new java.awt.Dimension(800, 700));
+        setSize(new java.awt.Dimension(800, 700));
 
+        mName.setText("Name");
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(251, 237));
+
+        mAboutLabel.setLabelFor(mAboutText);
         mAboutLabel.setText("About");
 
         mBirthdayLabel.setText("Birthday");
@@ -79,6 +98,11 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
         mQuoteLabel.setText("Quote");
 
         mAboutText.setText("about");
+        mAboutText.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        mAboutText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mAboutText.setMaximumSize(new java.awt.Dimension(130, 14));
+        mAboutText.setMinimumSize(new java.awt.Dimension(130, 14));
+        mAboutText.setPreferredSize(new java.awt.Dimension(130, 14));
 
         mBirthdayText.setText("birthday");
 
@@ -87,6 +111,10 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
         mGenderText.setText("gender");
 
         mQuoteText.setText("quote");
+        mQuoteText.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        mQuoteText.setMaximumSize(new java.awt.Dimension(130, 14));
+        mQuoteText.setMinimumSize(new java.awt.Dimension(130, 14));
+        mQuoteText.setPreferredSize(new java.awt.Dimension(130, 14));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,11 +122,7 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(mAboutLabel)
-                        .addGap(46, 46, 46)
-                        .addComponent(mAboutText))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mBirthdayLabel)
@@ -106,21 +130,25 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
                             .addComponent(mGenderLabel)
                             .addComponent(mQuoteLabel))
                         .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mQuoteText)
-                            .addComponent(mGenderText)
-                            .addComponent(mEmailText)
-                            .addComponent(mBirthdayText))))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(mGenderText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mEmailText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mBirthdayText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mQuoteText, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(mAboutLabel)
+                        .addGap(46, 46, 46)
+                        .addComponent(mAboutText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mAboutLabel)
-                    .addComponent(mAboutText))
-                .addGap(18, 18, 18)
+                    .addComponent(mAboutText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mBirthdayLabel)
                     .addComponent(mBirthdayText))
@@ -133,11 +161,16 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
                     .addComponent(mGenderLabel)
                     .addComponent(mGenderText))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mQuoteLabel)
-                    .addComponent(mQuoteText))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(mQuoteLabel)
+                        .addGap(190, 190, 190))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(mQuoteText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
+
+        mPhotosPannel.setLayout(new java.awt.GridLayout(1, 3));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,21 +179,25 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
+                        .addGap(192, 192, 192)
                         .addComponent(mName))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mPhotosPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(mName)
-                .addGap(75, 75, 75)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mPhotosPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -214,6 +251,7 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
     private javax.swing.JLabel mGenderLabel;
     private javax.swing.JLabel mGenderText;
     private javax.swing.JLabel mName;
+    private javax.swing.JPanel mPhotosPannel;
     private javax.swing.JLabel mQuoteLabel;
     private javax.swing.JLabel mQuoteText;
     // End of variables declaration//GEN-END:variables
@@ -226,12 +264,27 @@ public class FacepalmForm extends javax.swing.JFrame implements IUserView{
 
     @Override
     public void updateUserInfo(User user) {
+        
         mName.setText(user.getName());
         mAboutText.setText(user.getAbout());
         mBirthdayText.setText(user.getBirthday());
         mEmailText.setText(user.getEmail());
         mGenderText.setText(user.getGender());
         mQuoteText.setText(user.getQuotes());
+        
+        
+        int albumCount = user.getAlbums().size();
+        GridLayout layout = (GridLayout)mPhotosPannel.getLayout();
+        layout.setRows(albumCount / 3);
+        layout.setColumns(3);
+        
+        for (int i = 0; i < albumCount; ++i) {
+            AlbumPanel panel = new AlbumPanel();
+            panel.startLoading(user.getAlbums().get(i).getId());
+            mPhotosPannel.add(user.getName(), panel);
+        }
+//        mPhotosPannel.add(panel);
+        
         
     }
 

@@ -91,7 +91,7 @@ public class MainForm extends javax.swing.JFrame {
             public void windowClosing(WindowEvent windowEvent) {
                 // save current access token
                 FBManager.getInstance().setAccessToken(login._token);
-                new FacepalmForm().setVisible(true);
+                new FbHomePage().setVisible(true);
                 MainForm.this.setVisible(false);
 //                /* get user info */
 //                Router router = ServiceUtils.createService(Router.class);
