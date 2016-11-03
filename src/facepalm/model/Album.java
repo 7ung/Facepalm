@@ -32,6 +32,12 @@ public class Album extends BaseConnector{
     @SerializedName("likes")
     private AlbumLike _likes;
 
+    @SerializedName("photos")    
+    private AlbumPhoto _photos;
+    
+    @SerializedName("cover_photo")    
+    private BaseConnector _cover_photo;
+    
     /**
      * @return the _description
      */
@@ -73,6 +79,20 @@ public class Album extends BaseConnector{
     public AlbumLike getLikes() {
         return _likes;
     }
+
+    /**
+     * @return the _photos
+     */
+    public AlbumPhoto getPhotos() {
+        return _photos;
+    }
+
+    /**
+     * @return the _cover_photo
+     */
+    public BaseConnector getCoverPhoto() {
+        return _cover_photo;
+    }
     
     private class AlbumComment{
         @SerializedName("data")
@@ -90,8 +110,16 @@ public class Album extends BaseConnector{
         private Paging _paging;
     }
     
+    private class AlbumPhoto{
+        @SerializedName("data")
+        private ArrayList<Photo> _feeds;
+        
+        @SerializedName("paging")
+        private Paging _paging;
+    }
+    
     public static String buildFieldsParams(){
         // để sau bỏ vô cái list cho dễ
-        return "id,name,created_time,description,updated_time,count,link,comments,likes";
+        return "id,name,created_time,description,updated_time,count,link,comments,likes,photos,cover_photo";
     }
 }

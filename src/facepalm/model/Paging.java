@@ -16,6 +16,12 @@ public class Paging{
     @SerializedName("cursors")            
     private Cursor cursor;
 
+    @SerializedName("next")
+    private String _next;
+    
+    @SerializedName("previous")
+    private String _previous;
+    
     private class Cursor{
         @SerializedName("before")            
         private String before;
@@ -23,4 +29,6 @@ public class Paging{
         @SerializedName("after")            
         private String after;
     }
+    
+    
 }

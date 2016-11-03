@@ -120,14 +120,14 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         inputText.setRows(3);
         jScrollPane1.setViewportView(inputText);
 
-        sendBtn.setText("Đăng");
+        sendBtn.setText("�ang");
         sendBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendBtnActionPerformed(evt);
             }
         });
 
-        privacyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Công khai", "Chỉ mình tôi", "Bạn bè" }));
+        privacyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "C�ng khai", "Ch? m�nh t�i", "B?n b�" }));
 
         jLabel1.setText("Link");
 
@@ -176,7 +176,7 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        tabbedPanel.addTab("Trạng thái", basicInfoTab);
+        tabbedPanel.addTab("Tr?ng th�i", basicInfoTab);
 
         javax.swing.GroupLayout photosTabLayout = new javax.swing.GroupLayout(photosTab);
         photosTab.setLayout(photosTabLayout);
@@ -292,11 +292,11 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
            // get user data
            User user = FBManager.getInstance().getCurrentUser();
 
-           nameLabel.setText("Xin chào " + user.getName() + ", bạn đang nghĩ gì? :)");
+           nameLabel.setText("Xin ch�o " + user.getName() + ", b?n dang nghi g�? :)");
            
            loadImage(user.getPicture().getUrl());
            
-           loginBtn.setText("Đăng xuất");
+           loginBtn.setText("�ang xu?t");
            sendBtn.setEnabled(true);
            inputText.setEnabled(true);
            linkInputText.setEnabled(true);
@@ -304,10 +304,10 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         }
         else
         {
-           nameLabel.setText("Bấm nút để đăng nhập.");
+           nameLabel.setText("B?m n�t d? dang nh?p.");
            avatarLabel.setIcon(null);
            
-           loginBtn.setText("Đăng nhập");
+           loginBtn.setText("�ang nh?p");
            sendBtn.setEnabled(false);
            inputText.setEnabled(false);
            linkInputText.setEnabled(false);

@@ -9,9 +9,13 @@ import facepalm.model.AccessToken;
 import facepalm.model.Album;
 import facepalm.model.Feed;
 import facepalm.model.Privacy;
+import facepalm.model.Photo;
 import facepalm.model.User;
 import facepalm.model.User.PictureData;
 import java.util.Map;
+import facepalm.model.User.PictureWrap;
+import facepalm.model.User.UserPhoto;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -49,4 +53,16 @@ public interface Router {
     
     @POST("me/feed")
     Call<Feed> postStatus(@QueryMap Map<String, String> parameters, @Query("access_token") String token);
+    @GET("{photo_id}/")
+    Call<Photo> retrievePhoto(@Path("photo_id") String albumId, @Query("fields") String fields, @Query("access_token") String token);
+    
+    @GET("me/photos/")
+    Call<UserPhoto> retrieveUserPhotos(@Query("fields") String fields, @Query("access_token") String token);
+    
+    @GET("me/picture?redirect=false")
+    Call<PictureWrap> retrivePicture(@Query("width") int width, @Query("height") int height, @Query("access_token") String token);
+
+    @GET("{user_id}/picture?redirect=false")
+    Call<PictureWrap> retrivePeoplePicture(@Path("user_id") String userId, @Query("width") int width, @Query("height") int height, @Query("access_token") String token);
+    
 }
