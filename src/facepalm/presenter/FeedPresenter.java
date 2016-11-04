@@ -14,9 +14,12 @@ import facepalm.fbservices.ServiceUtils;
 import facepalm.model.Feed;
 import facepalm.model.Parameters;
 import facepalm.model.Privacy;
+import facepalm.model.User.UserFeed;
 import java.io.IOException;
 import java.util.ArrayList;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *
@@ -25,7 +28,9 @@ import retrofit2.Call;
 public class FeedPresenter {
     
     private IFeedView _view;
+    
     private Router _router = ServiceUtils.createService(Router.class);
+    
     private ArrayList<Feed> _feeds = new ArrayList<Feed>();
     
     public FeedPresenter(IFeedView view)
@@ -83,5 +88,25 @@ public class FeedPresenter {
         }
         
         _view.updateUserFeed();
+    }
+    
+    public void loadUserFeed(){
+        Call<UserFeed> call  = _router.retriveUserFeed(
+                Feed.buildFieldsParams(),
+                FBManager.getInstance().getAccessToken());
+        call.enqueue(new Callback<UserFeed>() {
+
+            @Override
+            public void onResponse(Call<UserFeed> call, Response<UserFeed> rspns) {
+                UserFeed feeds = rspns.body();
+                _view.updateFeed(feeds._feeds);
+            }
+
+            @Override
+            public void onFailure(Call<UserFeed> call, Throwable thrwbl) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
     }
 }

@@ -5,6 +5,9 @@
  */
 package facepalm;
 
+import facepalm.model.Feed;
+import java.util.ArrayList;
+
 /**
  *
  * @author Vinh
@@ -12,4 +15,5 @@ package facepalm;
 public interface IFeedView {
     void updateUI();
     void updateUserFeed();
+    void updateFeed(ArrayList<Feed> feeds);
 }

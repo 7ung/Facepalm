@@ -6,6 +6,7 @@
 package facepalm.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 /**
  *
@@ -36,6 +37,27 @@ public class Feed extends BaseTextConnector {
 
     @SerializedName("object_attachment")
     protected String _object_attachment;
+    
+    @SerializedName("comments")
+    private FeedComment _comments;
+
+    /**
+     * @return the _comments
+     */
+    public FeedComment getComments() {
+        return _comments;
+    }
+    
+    public class FeedComment{
+        @SerializedName("data")
+        public ArrayList<Comment> comments;
+        
+        @SerializedName("paging")
+        public Paging _paging;
+    }    
+    public static String buildFieldsParams(){
+        return "id,message,created_time,comments";
+    }
     
     public void setData(String message, String link, String name, String caption, String desc, String picture, String place,
                         String tags, String objectAtt)

@@ -15,12 +15,16 @@ import facepalm.model.Privacy;
 import facepalm.model.Feed;
 import facepalm.model.User;
 import facepalm.presenter.FeedPresenter;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 
 /**
@@ -95,9 +99,12 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         leftPanel = new facepalm.LeftPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        feedPanel = new javax.swing.JPanel();
         photosTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
         setLocation(new java.awt.Point(300, 150));
 
         tabbedPanel.setFocusable(false);
@@ -137,6 +144,9 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
 
         jScrollPane2.setViewportView(leftPanel);
 
+        feedPanel.setLayout(new javax.swing.BoxLayout(feedPanel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane3.setViewportView(feedPanel);
+
         javax.swing.GroupLayout basicInfoTabLayout = new javax.swing.GroupLayout(basicInfoTab);
         basicInfoTab.setLayout(basicInfoTabLayout);
         basicInfoTabLayout.setHorizontalGroup(
@@ -146,7 +156,8 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
                 .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(basicInfoTabLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3))
                     .addGroup(basicInfoTabLayout.createSequentialGroup()
                         .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,7 +171,7 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicInfoTabLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(linkInputText, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                .addComponent(linkInputText, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(privacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,7 +196,9 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
                     .addComponent(linkInputText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addGroup(basicInfoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
 
@@ -195,7 +208,7 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         photosTab.setLayout(photosTabLayout);
         photosTabLayout.setHorizontalGroup(
             photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 1006, Short.MAX_VALUE)
         );
         photosTabLayout.setVerticalGroup(
             photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +331,8 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
            leftPanel.setUserProfile(FBManager.getInstance().getCurrentUser());
            leftPanel.loadPreviewPhoto();
            leftPanel.setVisible(true);
-
+           
+           _feedPresenter.loadUserFeed();
         }
         else
         {
@@ -336,10 +350,12 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarLabel;
     private javax.swing.JPanel basicInfoTab;
+    private javax.swing.JPanel feedPanel;
     private javax.swing.JTextArea inputText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private facepalm.LeftPanel leftPanel;
     private javax.swing.JTextField linkInputText;
     private javax.swing.JButton loginBtn;
@@ -354,5 +370,18 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
     public void updateUserFeed() {
         inputText.setText("");
         linkInputText.setText("");
+    }
+
+    @Override
+    public void updateFeed(ArrayList<Feed> feeds) {
+        for (int i = 0; i < feeds.size(); i++) {
+            FeedView view = new FeedView();
+            view.setFeed(feeds.get(i));
+            feedPanel.add(view);
+            if (i != feeds.size() - 1) {
+                Component rigidArea = Box.createRigidArea(new Dimension(0, 24));
+                feedPanel.add(rigidArea);
+            }
+        }
     }
 }

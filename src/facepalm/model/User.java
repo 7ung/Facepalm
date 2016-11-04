@@ -23,12 +23,12 @@ public class User {
 
     @SerializedName("name")
     private String _name;
-    
-    @SerializedName("about")
-    private String _about;
 
     @SerializedName("birthday")    
     private String _birthday;
+    
+    @SerializedName("about")
+    private String _about;
 
     @SerializedName("email")
     private String _email;
@@ -191,12 +191,12 @@ public class User {
     /**
      * Lớp chứa danh sách các bài feed của ngừoi dùng
      */
-    private class UserFeed{
+    public class UserFeed{
         @SerializedName("data")
-        private ArrayList<Feed> _feeds;
+        public ArrayList<Feed> _feeds;
         
         @SerializedName("paging")
-        private Paging _paging;
+        public Paging _paging;
     }
     
     private class Paging{
@@ -227,7 +227,7 @@ public class User {
         @SerializedName("paging")
         public Paging _paging;     
     }
-    
+        
     public class PictureWrap{
         
         @SerializedName("data")

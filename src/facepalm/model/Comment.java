@@ -15,4 +15,18 @@ public class Comment extends BaseTextConnector{
     
     @SerializedName("from")
     private BaseConnector _from;
+
+    /**
+     * @return the _from
+     */
+    public BaseConnector getFrom() {
+        return _from;
+    }
+
+    /**
+     * @param _from the _from to set
+     */
+    public void setFrom(BaseConnector _from) {
+        this._from = _from;
+    }
 }

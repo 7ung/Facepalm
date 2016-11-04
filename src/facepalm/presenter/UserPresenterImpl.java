@@ -20,6 +20,7 @@ import retrofit2.Response;
  * @author Stevie
  */
 public class UserPresenterImpl implements IUserPresenter{
+    
     private static Router sRouter = ServiceUtils.createService(Router.class);
 
     private IUserView iView;
@@ -32,7 +33,9 @@ public class UserPresenterImpl implements IUserPresenter{
     @Override
     public void loadUserInfo(){
                 
-        Call<User> call = sRouter.retrieveInfo(User.buildFieldsParams(), FBManager.getInstance().getAccessToken());
+        Call<User> call = sRouter.retrieveInfo(
+                User.buildFieldsParams(),
+                FBManager.getInstance().getAccessToken());
         call.enqueue(mUserCallback);
         
     }
