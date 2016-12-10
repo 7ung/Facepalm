@@ -60,12 +60,13 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
                     URL url = new URL(imagePath);
                    
                     BufferedImage image = ImageIO.read(url);
+                    
                     System.out.println("Load image into frame...");
                     
                     Image img = image.getScaledInstance(avatarLabel.getWidth(), avatarLabel.getHeight(), Image.SCALE_SMOOTH);
                     
                     avatarLabel.setIcon(new ImageIcon(img));
-                    
+                    FBManager.getInstance().getCurrentUser().setImgProfile(image);
                     System.out.println("done.");
                 }
                 catch(Exception ex)
@@ -327,23 +328,29 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
            inputText.setEnabled(true);
            linkInputText.setEnabled(true);
            privacyComboBox.setEnabled(true);
-           
+
+           feedPanel.setVisible(true);
+           leftPanel.setVisible(true);
            leftPanel.setUserProfile(FBManager.getInstance().getCurrentUser());
            leftPanel.loadPreviewPhoto();
            leftPanel.setVisible(true);
            
            _feedPresenter.loadUserFeed();
+           
+          
         }
         else
         {
-           nameLabel.setText("Bấm nút để đăng nhập.");
-           avatarLabel.setIcon(null);
-           
-           loginBtn.setText("Đăng nhập");
-           sendBtn.setEnabled(false);
-           inputText.setEnabled(false);
-           linkInputText.setEnabled(false);
-           privacyComboBox.setEnabled(false);
+            nameLabel.setText("Bấm nút để đăng nhập.");
+            avatarLabel.setIcon(null);
+
+            loginBtn.setText("Đăng nhập");
+            sendBtn.setEnabled(false);
+            inputText.setEnabled(false);
+            linkInputText.setEnabled(false);
+            privacyComboBox.setEnabled(false);
+            feedPanel.setVisible(false);
+            leftPanel.setVisible(false);
         }
     }
 

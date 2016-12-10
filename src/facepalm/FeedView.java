@@ -7,6 +7,7 @@ package facepalm;
 
 import facepalm.fbservices.FBManager;
 import facepalm.model.Feed;
+import facepalm.model.Privacy;
 import facepalm.model.User;
 import facepalm.presenter.IPicturePresenter;
 import facepalm.presenter.PicturePresenterImpl;
@@ -26,6 +27,8 @@ import javax.swing.ImageIcon;
  */
 public class FeedView extends javax.swing.JPanel implements IPictureView {
 
+    private static String avtUrl = null;
+
     /**
      * Creates new form FeedView
      */
@@ -42,54 +45,104 @@ public class FeedView extends javax.swing.JPanel implements IPictureView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        _date = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 16), new java.awt.Dimension(0, 16), new java.awt.Dimension(0, 16));
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         _avt = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        _message = new javax.swing.JTextArea();
+        _userNameLb = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        _date = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(16, 0), new java.awt.Dimension(16, 0), new java.awt.Dimension(16, 0));
+        _privacyLb = new javax.swing.JLabel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 16), new java.awt.Dimension(0, 16), new java.awt.Dimension(0, 16));
+        _msgLb = new javax.swing.JTextArea();
+        _imgPicture = new javax.swing.JLabel();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 8), new java.awt.Dimension(0, 8), new java.awt.Dimension(0, 8));
         _commentPanel = new facepalm.CommentPanel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        _date.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        _date.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        _date.setText("...");
-        add(_date);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setAlignmentX(0.0F);
+        jPanel2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        jPanel2.setMaximumSize(new java.awt.Dimension(1000, 56));
+        jPanel2.setMinimumSize(new java.awt.Dimension(160, 56));
+        jPanel2.setPreferredSize(new java.awt.Dimension(160, 56));
 
-        filler1.setAlignmentX(0.0F);
-        add(filler1);
+        _avt.setBackground(new java.awt.Color(204, 204, 204));
+        _avt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        _avt.setMaximumSize(new java.awt.Dimension(56, 56));
+        _avt.setMinimumSize(new java.awt.Dimension(56, 56));
+        _avt.setPreferredSize(new java.awt.Dimension(56, 56));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(368, 100));
+        _userNameLb.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        _userNameLb.setForeground(new java.awt.Color(54, 88, 153));
+        _userNameLb.setText("User Name");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        _avt.setText("...");
-        _avt.setMaximumSize(new java.awt.Dimension(72, 72));
-        _avt.setMinimumSize(new java.awt.Dimension(72, 72));
-        _avt.setPreferredSize(new java.awt.Dimension(72, 72));
-        jPanel1.add(_avt);
+        _date.setForeground(new java.awt.Color(144, 148, 156));
+        _date.setText("time");
+        jPanel1.add(_date);
+        jPanel1.add(filler1);
 
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(32767, 100));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(166, 80));
+        _privacyLb.setForeground(new java.awt.Color(144, 148, 156));
+        _privacyLb.setText("privacy");
+        _privacyLb.setMaximumSize(new java.awt.Dimension(14, 14));
+        _privacyLb.setMinimumSize(new java.awt.Dimension(14, 14));
+        _privacyLb.setPreferredSize(new java.awt.Dimension(14, 14));
+        jPanel1.add(_privacyLb);
 
-        _message.setEditable(false);
-        _message.setBackground(new java.awt.Color(204, 204, 204));
-        _message.setColumns(20);
-        _message.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        _message.setLineWrap(true);
-        _message.setRows(4);
-        _message.setWrapStyleWord(true);
-        _message.setAutoscrolls(false);
-        _message.setFocusable(false);
-        _message.setMaximumSize(new java.awt.Dimension(2147483647, 100));
-        jScrollPane1.setViewportView(_message);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(_avt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(_userNameLb)
+                        .addGap(0, 262, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(_avt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(_userNameLb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
 
-        jPanel1.add(jScrollPane1);
+        _avt.getAccessibleContext().setAccessibleName("img");
 
-        add(jPanel1);
+        add(jPanel2);
         add(filler2);
+
+        _msgLb.setEditable(false);
+        _msgLb.setColumns(20);
+        _msgLb.setLineWrap(true);
+        _msgLb.setRows(5);
+        _msgLb.setText("...");
+        _msgLb.setWrapStyleWord(true);
+        _msgLb.setAlignmentX(0.0F);
+        _msgLb.setBorder(null);
+        _msgLb.setMaximumSize(new java.awt.Dimension(1000, 120));
+        _msgLb.setMinimumSize(new java.awt.Dimension(160, 14));
+        _msgLb.setPreferredSize(new java.awt.Dimension(164, 80));
+        add(_msgLb);
+        add(_imgPicture);
+        add(filler3);
+
+        _commentPanel.setAlignmentX(0.0F);
         add(_commentPanel);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -98,33 +151,65 @@ public class FeedView extends javax.swing.JPanel implements IPictureView {
     private javax.swing.JLabel _avt;
     private facepalm.CommentPanel _commentPanel;
     private javax.swing.JLabel _date;
-    private javax.swing.JTextArea _message;
+    private javax.swing.JLabel _imgPicture;
+    private javax.swing.JTextArea _msgLb;
+    private javax.swing.JLabel _privacyLb;
+    private javax.swing.JLabel _userNameLb;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
     
     public void setFeed(Feed f){
-        _date.setText(f.getCreatedTime());
-        _message.setText(f.getMessage());
-        if (f.getComments() != null) {
+        if (f.getCreatedTime() != null )
+            _date.setText(f.getCreatedTime());
+        if (f.getMessage() != null )
+            _msgLb.setText(f.getMessage());
+        else
+            _msgLb.setVisible(false);
+        
+        if (f.getFullPicture() != null){
+             Utils.loadImage(_imgPicture, f.getFullPicture(), false);
+        }
+        else{
+            _imgPicture.setVisible(false);
+        }
+        _userNameLb.setText(FBManager.getInstance().getCurrentUser().getName());
+        try {
+            setPrivacyIcon(f.getPrivacy().geteValue());
+        } catch (IOException ex) {
+            Logger.getLogger(FeedView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (f.getComments() != null && f.getComments().comments.size() != 0)
+        {
             _commentPanel.setComments(f.getComments().comments);
-        } else {
+        }
+        else
+        {
             _commentPanel.setVisible(false);
         }
-//        Utils.loadImage(_avt, 
-//                FBManager.getInstance().getCurrentUser().getPicture().getUrl());
+//        _message.setText(f.getMessage());
+//        if (f.getComments() != null) {
+//            _commentPanel.setComments(f.getComments().comments);
+//        } else {
+//            _commentPanel.setVisible(false);
+//        }
         
-        if (avtUrl == null){
-            IPicturePresenter presenter = new PicturePresenterImpl(this);
-            presenter.loadUserPicture(65, 65);
-        } else {
-            Utils.loadImage(_avt, avtUrl);
-        }
+        Utils.loadImage(_avt, 
+               FBManager.getInstance().getCurrentUser().getPicture().getUrl());
+//        
+//        if (avtUrl == null){
+//            IPicturePresenter presenter = new PicturePresenterImpl(this);
+//            presenter.loadUserPicture(65, 65);
+//        } else {
+//            Utils.loadImage(_avt, avtUrl);
+//        }
+
     }
 
-    private static String avtUrl = null;
     @Override
     public void updateView(User.PictureWrap picture) {
         avtUrl = picture.getUrl();
@@ -136,7 +221,7 @@ public class FeedView extends javax.swing.JPanel implements IPictureView {
             BufferedImage image = ImageIO.read(url);
             System.out.println("Load image into frame...");
 
-            Image img = image.getScaledInstance(_avt.getWidth(), _avt.getHeight(), Image.SCALE_SMOOTH);
+            Image img = image.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
             _avt.setIcon(new ImageIcon(img));
 
         } catch (MalformedURLException ex) {
@@ -144,5 +229,46 @@ public class FeedView extends javax.swing.JPanel implements IPictureView {
         } catch (IOException ex) {
             Logger.getLogger(FeedView.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void setPrivacyIcon(Privacy.eType privacyType) throws IOException {
+        String ic_name = ""; 
+        switch (privacyType)
+        {
+            case SELF:
+                ic_name = "ic_lock.png";
+                break;
+            case EVERYONE:
+                ic_name = "ic_global.png";
+                break;
+            case ALL_FRIENDS:
+                ic_name = "ic_person.png";
+                break;
+            case FRIENDS_OF_FRIENDS:
+                ic_name = "ic_lock.png";
+                break;
+            case CUSTOM:
+                ic_name = "ic_custom.png";
+                break;
+            default:
+                ic_name =  "ic_global.png";
+                break;
+        }
+       BufferedImage bufImg = ImageIO.read(getClass().getResource("/assets/" + ic_name));
+       Image img = bufImg.getScaledInstance(
+                            _privacyLb.getPreferredSize().width,
+                            _privacyLb.getPreferredSize().height,
+                            Image.SCALE_SMOOTH);
+       _privacyLb.setIcon(new ImageIcon(img));
+
+    }
+
+    private String setTextHtml(String msg) {
+        String[] msgs = msg.split("\n");
+        String rt = "";
+        for (int i = 0; i < msgs.length; i++) {
+            rt += "<p>" + msgs[i] + "</p>";
+        }
+        return "<HTML>" + rt  + "</HTML>";
     }
 }

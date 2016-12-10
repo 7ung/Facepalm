@@ -56,7 +56,7 @@ public class FeedPresenter {
                 break;
         }
         
-        Privacy privacy = new Privacy(type.toString());
+        Privacy privacy = new Privacy(type);
         // build privacy data
         Gson gson = new GsonBuilder().create();
         String pr = gson.toJson(privacy);
@@ -70,7 +70,7 @@ public class FeedPresenter {
         params.add("description", status.getDescription());
         params.add("place", status.getPlace());
         params.add("tags", status.getTags());
-        params.add("object_attachment", status.getObjectAttachment());
+        params.add("object_attachment", status.getObject_attachment());
         params.add("privacy", pr);
         
         try {

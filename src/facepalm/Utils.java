@@ -67,7 +67,8 @@ public class Utils {
         
         return null;
     }
-
+    
+    
     public static void loadImage(JLabel label, String path){
                         
         EventQueue.invokeLater(new Runnable(){
@@ -81,7 +82,35 @@ public class Utils {
                             label.getPreferredSize().width,
                             label.getPreferredSize().height,
                             Image.SCALE_SMOOTH);
-                    label.setIcon(new ImageIcon(image));
+                    label.setIcon(new ImageIcon(img));
+                } catch (Exception exp) {
+                    exp.printStackTrace();
+                }                        
+            }
+        });
+    }
+
+    public static void loadImage(JLabel label, String path, boolean isScale){
+                        
+        EventQueue.invokeLater(new Runnable(){
+
+            @Override
+            public void run() {
+            try {
+                    URL url = new URL(path);
+                    BufferedImage image = ImageIO.read(url);
+                    if (isScale){
+                        Image img = image.getScaledInstance(
+                                label.getPreferredSize().width,
+                                label.getPreferredSize().height,
+                                Image.SCALE_SMOOTH);
+
+                        label.setIcon(new ImageIcon(img));                        
+                    }else{
+                        label.setIcon(new ImageIcon(image));       
+                        label.setSize(image.getWidth(), image.getHeight());
+                    }
+
                 } catch (Exception exp) {
                     exp.printStackTrace();
                 }                        

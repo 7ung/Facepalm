@@ -12,12 +12,7 @@ import facepalm.presenter.AlbumPresenterImpl;
 import facepalm.presenter.IAlbumPresenter;
 import facepalm.presenter.IPhotoPresenter;
 import facepalm.presenter.PhotoPresenterImpl;
-import java.awt.EventQueue;
-import java.awt.image.BufferedImage;
-import java.net.URL;
-import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+
 
 /**
  *

@@ -6,11 +6,8 @@
 package facepalm.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.sun.xml.internal.ws.developer.Serialization;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 /**
  * Thông tin người dùng
  * @author TungHH
@@ -57,7 +54,8 @@ public class User {
     @SerializedName("friends")
     private UserFriend _friend;
     
-    
+    private BufferedImage _imgProfile;
+  
     public static String buildFieldsParams(){
         // để sau bỏ vô cái list cho dễ
         return "about,name,id,birthday,email,gender,quotes,cover,albums,likes,feed,picture,friends";
@@ -152,6 +150,20 @@ public class User {
      */
     public UserFriend getFriend() {
         return _friend;
+    }
+
+    /**
+     * @return the _imgProfile
+     */
+    public BufferedImage getImgProfile() {
+        return _imgProfile;
+    }
+
+    /**
+     * @param _imgProfile the _imgProfile to set
+     */
+    public void setImgProfile(BufferedImage _imgProfile) {
+        this._imgProfile = _imgProfile;
     }
 
     

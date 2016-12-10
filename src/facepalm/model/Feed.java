@@ -36,16 +36,53 @@ public class Feed extends BaseTextConnector {
     protected String _tags;
 
     @SerializedName("object_attachment")
-    protected String _object_attachment;
+    private String _object_attachment;
     
     @SerializedName("comments")
     private FeedComment _comments;
 
+    @SerializedName("status_type")
+    private eStatusType _status_type;
+    
+    @SerializedName("type")
+    private eType _type;
+    
+    @SerializedName("full_picture")
+    private String _full_picture;
+    
     /**
      * @return the _comments
      */
     public FeedComment getComments() {
         return _comments;
+    }
+
+    /**
+     * @return the _object_attachment
+     */
+    public String getObject_attachment() {
+        return _object_attachment;
+    }
+
+    /**
+     * @return the _status_type
+     */
+    public eStatusType getStatus_type() {
+        return _status_type;
+    }
+
+    /**
+     * @return the _type
+     */
+    public eType getType() {
+        return _type;
+    }
+
+    /**
+     * @return the _full_picture
+     */
+    public String getFullPicture() {
+        return _full_picture;
     }
     
     public class FeedComment{
@@ -56,7 +93,7 @@ public class Feed extends BaseTextConnector {
         public Paging _paging;
     }    
     public static String buildFieldsParams(){
-        return "id,message,created_time,comments";
+        return "id,message,created_time,comments, privacy, full_picture,status_type, type";
     }
     
     public void setData(String message, String link, String name, String caption, String desc, String picture, String place,
@@ -100,8 +137,48 @@ public class Feed extends BaseTextConnector {
     public String getTags() {
         return _tags;
     }
-
-    public String getObjectAttachment() {
-        return _object_attachment;
+    
+    /**
+     *  Status type là loại bài đăng của feed
+     *  @see Feed
+     */
+    public enum eStatusType{
+        @SerializedName("mobile_status_update")
+        MOBILE_STATUS_UPDATE,
+        @SerializedName("created_note")
+        CREATED_NOTE,
+        @SerializedName("added_photos")
+        ADDED_PHOTOS,
+        @SerializedName("added_video")
+        ADDED_VIDEO,
+        @SerializedName("shared_story")
+        SHARED_STORY,
+        @SerializedName("created_group")
+        CREATED_GROUP, 
+        @SerializedName("created_event")
+        CREATED_EVENT, 
+        @SerializedName("wall_post")
+        WALL_POST, 
+        @SerializedName("app_created_story")
+        APP_CREATED_STORY, 
+        @SerializedName("published_story")
+        PUBLISHED_STORY, 
+        @SerializedName("tagged_in_photo")
+        TAGGED_IN_PHOTO,
+        @SerializedName("approved_friend")
+        APPROVED_FRIEND
+    }
+    
+    public enum eType {
+        @SerializedName("link")
+        LINK, 
+        @SerializedName("status")
+        STATUS, 
+        @SerializedName("photo")
+        PHOTO, 
+        @SerializedName("video")
+        VIDEO, 
+        @SerializedName("offer")
+        OFFER
     }
 }

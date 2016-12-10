@@ -32,59 +32,105 @@ public class CommentView extends javax.swing.JPanel implements IPictureView{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         _picture = new javax.swing.JLabel();
         _name = new javax.swing.JLabel();
-        _comment = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        _date = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(16, 0), new java.awt.Dimension(16, 0), new java.awt.Dimension(16, 0));
+        _comment = new javax.swing.JTextArea();
 
-        _picture.setText("jLabel1");
-        _picture.setPreferredSize(new java.awt.Dimension(100, 100));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 0, 4, 0));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        _name.setText("name");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setAlignmentX(0.0F);
+        jPanel2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        jPanel2.setMaximumSize(new java.awt.Dimension(1000, 56));
+        jPanel2.setMinimumSize(new java.awt.Dimension(160, 56));
 
-        _comment.setEditable(false);
-        _comment.setBackground(new java.awt.Color(204, 204, 255));
-        _comment.setText("jTextField1");
-        _comment.setEnabled(false);
+        _picture.setBackground(new java.awt.Color(204, 204, 204));
+        _picture.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        _picture.setMaximumSize(new java.awt.Dimension(56, 56));
+        _picture.setMinimumSize(new java.awt.Dimension(56, 56));
+        _picture.setPreferredSize(new java.awt.Dimension(56, 56));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+        _name.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        _name.setForeground(new java.awt.Color(54, 88, 153));
+        _name.setText("User Name");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+
+        _date.setForeground(new java.awt.Color(144, 148, 156));
+        _date.setText("time");
+        jPanel1.add(_date);
+        jPanel1.add(filler1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(_picture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(_name)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(_comment, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(0, 262, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(_picture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(_name)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(_comment)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
+
+        add(jPanel2);
+
+        _comment.setEditable(false);
+        _comment.setColumns(20);
+        _comment.setLineWrap(true);
+        _comment.setRows(5);
+        _comment.setText("...");
+        _comment.setWrapStyleWord(true);
+        _comment.setAlignmentX(0.0F);
+        _comment.setBorder(null);
+        _comment.setMaximumSize(new java.awt.Dimension(1000, 50));
+        _comment.setMinimumSize(new java.awt.Dimension(160, 14));
+        _comment.setPreferredSize(new java.awt.Dimension(164, 40));
+        add(_comment);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField _comment;
+    private javax.swing.JTextArea _comment;
+    private javax.swing.JLabel _date;
     private javax.swing.JLabel _name;
     private javax.swing.JLabel _picture;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
     public void setComment(Comment comment){
         _name.setText(comment.getFrom().getName());
         _comment.setText(comment.getMessage());
+        
+        if (comment.getCreatedTime()!= null)
+            _date.setText(comment.getCreatedTime());
+        else
+            _date.setVisible(false);
         IPicturePresenter presenter = new PicturePresenterImpl(this);
         presenter.loadPeoplePicture(comment.getFrom().getId(), 100, 100);
     }
