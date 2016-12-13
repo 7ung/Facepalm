@@ -242,6 +242,9 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         login.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
+                if(login._token == null || login._expiresDate == null)
+                    return;
+                
                 // save current access token
                 FBManager.getInstance().setAccessToken(login._token, login._expiresDate);
                 

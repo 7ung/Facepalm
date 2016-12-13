@@ -28,7 +28,7 @@ public class LoginDialog extends javax.swing.JFrame {
     private Scene _scene;
 
     private String _successUrl = "";
-    private boolean _loggedin = false;
+    // private boolean _loggedin = false;
 
     public String _token;
     public Date _expiresDate;
@@ -51,22 +51,29 @@ public class LoginDialog extends javax.swing.JFrame {
         _jfxPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
         this.add(_jfxPanel);
 
+        Platform.setImplicitExit(false);
         Platform.runLater(() -> {
+            // tạo browser
             Browser browser = new Browser(url);
             _scene = new Scene(browser, this.getWidth(), this.getHeight(), Color.web("#666970"));
             _jfxPanel.setScene(_scene);
-
-            // process page loading
+            
+            // kiểm tra trạng thái
             browser.getWebEngine().getLoadWorker().stateProperty().addListener(
                     (ObservableValue<? extends Worker.State> ov, Worker.State oldState, Worker.State newState) -> {
                         if (newState == Worker.State.SUCCEEDED) {
-                            String url1 = browser.getWebEngine().getLocation();
-                            if (url1.contains(_successUrl) && _loggedin) {
-                                extractURLInfo(url1);
+                            
+                            String currentUrl = browser.getWebEngine().getLocation();
+                            
+                            if (currentUrl.contains(_successUrl) && !currentUrl.contains("redirect_uri=")) {
+                                
+                                // trích thông tin
+                                extractURLInfo(currentUrl);
+                                
                                 // close frame and call event
-                                LoginDialog.this.dispatchEvent(new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
+                                LoginDialog.this.dispatchEvent(
+                                        new WindowEvent(LoginDialog.this, WindowEvent.WINDOW_CLOSING));
                             }
-                            _loggedin = true;
                         }
                     });
 
