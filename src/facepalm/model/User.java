@@ -6,10 +6,8 @@
 package facepalm.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 /**
  * Thông tin người dùng
  * @author TungHH
@@ -22,12 +20,12 @@ public class User {
 
     @SerializedName("name")
     private String _name;
-    
-    @SerializedName("about")
-    private String _about;
 
     @SerializedName("birthday")    
     private String _birthday;
+    
+    @SerializedName("about")
+    private String _about;
 
     @SerializedName("email")
     private String _email;
@@ -56,7 +54,8 @@ public class User {
     @SerializedName("friends")
     private UserFriend _friend;
     
-    
+    private BufferedImage _imgProfile;
+  
     public static String buildFieldsParams(){
         // để sau bỏ vô cái list cho dễ
         return "about,name,id,birthday,email,gender,quotes,cover,albums,likes,feed,picture,friends";
@@ -153,6 +152,20 @@ public class User {
         return _friend;
     }
 
+    /**
+     * @return the _imgProfile
+     */
+    public BufferedImage getImgProfile() {
+        return _imgProfile;
+    }
+
+    /**
+     * @param _imgProfile the _imgProfile to set
+     */
+    public void setImgProfile(BufferedImage _imgProfile) {
+        this._imgProfile = _imgProfile;
+    }
+
     
     public class Cover{
         @SerializedName("id")
@@ -190,12 +203,12 @@ public class User {
     /**
      * Lớp chứa danh sách các bài feed của ngừoi dùng
      */
-    private class UserFeed{
+    public class UserFeed{
         @SerializedName("data")
-        private ArrayList<Feed> _feeds;
+        public ArrayList<Feed> _feeds;
         
         @SerializedName("paging")
-        private Paging _paging;
+        public Paging _paging;
     }
     
     private class Paging{
@@ -226,7 +239,7 @@ public class User {
         @SerializedName("paging")
         public Paging _paging;     
     }
-    
+        
     public class PictureWrap{
         
         @SerializedName("data")

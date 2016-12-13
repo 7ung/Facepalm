@@ -15,6 +15,7 @@ import facepalm.model.User.PictureData;
 import java.util.Map;
 import facepalm.model.User.PictureWrap;
 import facepalm.model.User.UserPhoto;
+import facepalm.model.User.UserFeed;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -53,6 +54,10 @@ public interface Router {
     
     @POST("me/feed")
     Call<Feed> postStatus(@QueryMap Map<String, String> parameters, @Query("access_token") String token);
+    
+    @GET("me/feed/")
+    Call<UserFeed> retriveUserFeed(@Query("fields") String fields, @Query("access_token") String token);
+    
     @GET("{photo_id}/")
     Call<Photo> retrievePhoto(@Path("photo_id") String albumId, @Query("fields") String fields, @Query("access_token") String token);
     
