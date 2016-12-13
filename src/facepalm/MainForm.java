@@ -102,7 +102,6 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         leftPanel = new facepalm.LeftPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         feedPanel = new javax.swing.JPanel();
-        photosTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -204,19 +203,6 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
         );
 
         tabbedPanel.addTab("Trạng thái", basicInfoTab);
-
-        javax.swing.GroupLayout photosTabLayout = new javax.swing.GroupLayout(photosTab);
-        photosTab.setLayout(photosTabLayout);
-        photosTabLayout.setHorizontalGroup(
-            photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1006, Short.MAX_VALUE)
-        );
-        photosTabLayout.setVerticalGroup(
-            photosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
-        );
-
-        tabbedPanel.addTab("tab2", photosTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -370,7 +356,6 @@ public class MainForm extends javax.swing.JFrame implements IFeedView {
     private javax.swing.JTextField linkInputText;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JPanel photosTab;
     private javax.swing.JComboBox privacyComboBox;
     private javax.swing.JButton sendBtn;
     private javax.swing.JTabbedPane tabbedPanel;
